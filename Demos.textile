@@ -1,13 +1,12 @@
-
-h2. "Demo 1 (Basic)":http://jquery-week-calendar.s3.amazonaws.com/weekcalendar.html
+h2. "Demo 1 (Basic)":http://robmonie.github.com/jquery-week-calendar/weekcalendar.html
 
 Shows basic calendar functionality. Calendar Events are supplied as a local javascript array. All triggered events are displayed as messages, calendar events in the past are shaded gray using the eventRender callback.
 
-h2. "Demo 2 (Multi data-source and dynamic config options)":http://jquery-week-calendar.s3.amazonaws.com/weekcalendar_demo_2.html
+h2. "Demo 2 (Multi data-source and dynamic config options)":http://robmonie.github.com/jquery-week-calendar/weekcalendar_demo_2.html
 
 Allows you to select from two different data sources. These are both local javascript objects but could just as easily have come from a remote server. The data returned includes an ‘options’ property which overrides the default calendar options for ‘timeslotHeight’ and ‘timeslotsPerHour’.
 
-h2. "Demo 3 (Create / update / delete using jquery UI)":http://jquery-week-calendar.s3.amazonaws.com/full_demo/weekcalendar_full_demo.html
+h2. "Demo 3 (Create / update / delete using jquery UI)":http://robmonie.github.com/jquery-week-calendar/full_demo/weekcalendar_full_demo.html
 
 This demo shows the use of jquery ui modal dialog for creating, updating and deleting events. It also demonstrates the use of
 # Staggered overlapping events
