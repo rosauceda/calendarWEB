@@ -1,8 +1,5 @@
 h1. jQuery Week Calendar
 
-*Note*: this documentation has been copied form the project's original location and is currently incomplete. Until this notice has been removed please reference http://code.google.com/p/jquery-week-calendar/ for more complete details relating to this project.
-
-
 The jquery-week-calendar plugin provides a simple and flexible way of including a weekly calendar in your application.  It is built on top of jquery and jquery ui and is inspired by other online weekly calendars such as google calendar.  If you require a monthly calendar view, I highly recommend checking out the FullCalendar plugin by Adam Shaw.
 
 h2. Calendar features at a glance
@@ -208,7 +205,7 @@ h2. Dependencies
 * jQuery 1.3.2
 * jQuery UI  1.7.x including css. Requires drag, drop, resize.
 
-I have only tested with the versions listed above however it’s quite likely it could work in previous versions.
+I have only tested with the versions listed above however it’s quite likely it could work in previous versions. See note below for known issues with jquery 1.4 and jquery-ui 1.8
 
 h2. Browser Compatibility
 
@@ -235,7 +232,7 @@ There is a "google group":http://groups.google.com/group/jquery-week-calendar fo
 
 h2. Known Issues / Limitations & General Status
 
-Defects and enhancements are being managed on google code’s issue tracker.
+There are currently known issues using the calendar with jquery 1.4. Due to breaking changes in the jquery-ui widget framework there will be issues with this as well. These will be addressed shortly.
 
 h2. Thanks
 
