@@ -21,20 +21,6 @@ h2. Current Version
 
 The current version is 1.2.2
 
-h2. Live Demo
-
-The following live demonstration  has a basic calendar with a few events in it. It demonstrates most of the major functionality by triggering events that are displayed as messages in the top right hand corner of the screen.  More demos will  come soon…
-
-#  Demo 1 (Basic)
-#  Demo 1 shows basic calendar functionality. Calendar Events are supplied as a local javascript array. All triggered events are displayed as messages, calendar events in the past are shaded gray using the eventRender callback.
-# Demo 2 (Multi data-source and dynamic config options)
-#  Demo 2 allows you to select from two different data sources. These are both local javascript objects but could just as easily have come from a remote server. The data returned includes an ‘options’ property which overrides the default calendar options for ‘timeslotHeight’ and ‘timeslotsPerHour’.
-#  Demo 3 (Create / update / delete using jquery UI)
-This demo shows the use of jquery ui modal dialog for creating, updating and deleting events. It also demonstrates the use of
-## Staggered overlapping events
-## Querying the calendar for valid timeslots for a date to populate calendar event form select fields
-## Limited display of timeslots based on business hours
-
 h2. Getting Started
 
 Firstly download the code from google code. The zip contains an example, the source js and css.  Note that the example calendar references jquery and jquery-ui from the google cdn.  These are not included in the download.
