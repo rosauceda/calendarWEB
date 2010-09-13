@@ -1,1 +1,231 @@
-Welcome to the jquery-week-calendar wiki!
+h1. jQuery Week Calendar
+
+The jquery-week-calendar plugin provides a simple and flexible way of including a weekly calendar in your application.  It is built on top of jquery and jquery ui and is inspired by other online weekly calendars such as google calendar.  If you require a monthly calendar view, I highly recommend checking out the FullCalendar plugin by Adam Shaw.
+
+h2. Calendar features at a glance
+
+* Display of calendar events within a weekly grid
+* Calendar events can be supplied as an array, url or function returning json
+* Calendar events can be dragged, dropped and resized
+* Lots of callbacks for customizing the way events are rendered plus callbacks for drag, drop, resize, mouseover, click etc
+* Automatically scrolls to current time
+* Extend the core calendar event data structure with your own data
+* Highly configurable, enabling variable timeslots, readonly calendars, display of partial days, custom date formatting, direct manipulation of individual events for create, update, delete of events and much more.
+
+The design of the  week-calendar plugin is not meant to be a total solution for managing weekly events as this would have limited it’s scope. For example it doesn’t impose a user interface approach for editing and updating calendar events.  By providing the base weekly calendar api that is extensible, you will be able to create a much richer domain on top of the basic functionality. To help you achieve this, the calendar has plenty of hooks that make it quite simple to add this stuff in.
+
+h2. Current Version
+
+The current version is 1.2.2
+
+h2. Live Demo
+
+The following live demonstration  has a basic calendar with a few events in it. It demonstrates most of the major functionality by triggering events that are displayed as messages in the top right hand corner of the screen.  More demos will  come soon…
+
+#. Demo 1 (Basic)
+#. Demo 1 shows basic calendar functionality. Calendar Events are supplied as a local javascript array. All triggered events are displayed as messages, calendar events in the past are shaded gray using the eventRender callback.
+#. Demo 2 (Multi data-source and dynamic config options)
+#. Demo 2 allows you to select from two different data sources. These are both local javascript objects but could just as easily have come from a remote server. The data returned includes an ‘options’ property which overrides the default calendar options for ‘timeslotHeight’ and ‘timeslotsPerHour’.
+#. Demo 3 (Create / update / delete using jquery UI)
+This demo shows the use of jquery ui modal dialog for creating, updating and deleting events. It also demonstrates the use of
+**. Staggered overlapping events
+**. Querying the calendar for valid timeslots for a date to populate calendar event form select fields
+**. Limited display of timeslots based on business hours
+
+h2. Getting Started
+
+Firstly download the code from google code. The zip contains an example, the source js and css.  Note that the example calendar references jquery and jquery-ui from the google cdn.  These are not included in the download.
+
+Once you have the code, getting started is as simple as calling the plugin on a container element:
+
+$("#calendar").weekCalendar();
+
+This will display the weekly calendar but in order to display some calendar events, we need to add them. Events can be supplied via an array of CalEvent objects which are described below. What’s probably more useful would be to supply a url or function that calls back to the calendar after fetching some json data. To keep it simple though, for this example we’ll simply use a json object to demonstrate:
+
+$(document).ready(function() {
+  $('#calendar').weekCalendar({
+    events:[{"id":10182,
+      "start":"2009-05-03T12:15:00.000+10:00",
+      "end":"2009-05-03T13:15:00.000+10:00",
+      "title":"Lunch with Mike"
+    }, {
+      "id":10182,
+      "start":"2009-05-03T14:00:00.000+10:00",
+      "end":"2009-05-03T15:00:00.000+10:00",
+      "title":"Dev Meeting"
+    }]
+  });
+});
+
+
+h2. Config Options / Event Callbacks
+
+All config is optional although you probably want to at least provide the ‘data’ option.
+
+*. date: [date | default: now] – A reference date for the week. The week will be rendered based on whatever this date falls within. Defaults to now
+*. data: [array, object, string, function] – Data can be supplied in various forms:
+**. An array of calEvents
+**. An object containing a property called ‘events’ that is an array of calEvents and an optional property called ‘options’. If supplied, the options will override the default options supplied to the calendar when it was first loaded. This will cause the calendar to be re-rendered.
+**. A url (string) for retrieving data or a function for generating events or retrieving remotely the data structure described above.
+*. timeFormat : [string | default: "h:i a" ] – A format to use for times displayed by the calendar.
+*. dateFormat : [string | default: "M d, Y" ] – A format to use for dates displayed in the calendar.
+*. use24Hour : [boolean | default: false] – Renders timeslots in 24 hour time
+*. useShortDayNames : [boolean | default: false] – Whether to use short day names for display in day column headers. Ie. ‘Sun’ instead of ‘Sunday’.
+*. firstDayOfWeek : [integer  | default: 0] – Determines what day of the week to start on. 0 = sunday, 1 = tuesday etc.
+*. daysToShow : [integer | default: 7] – Determines how many days to show. Note that next/prev weekly navigation is still based on weeks rather than the number of days displaying.
+*. timeSeparator : [string  | default: " to "] – The delimiter /separator to use between start and end times display in a calendar event.
+*. businessHours : [object | default: {start: 8, end: 18, limitDisplay: false}] – An object that specifies which hours within the day to render as *. business hours. If limitDisplay is true, then only business hours will be rendered. If false, then a whole day will be rendered with business hours timeslot headers styled differently.
+*. readonly : [boolean | default: false] – If true, all intereactions that eventuate in a changed calendar state are disabled, including drag, drop, *. resize and event creation.
+*. startParam : [string | default: "start"] – The name of the ’start date’ request parameter used when supplying a url for fetching events.
+*. endParam : [string | default: "end"] – The name of the ‘end date’ request parameter used when supplying a url for fetching events.
+*. timeslotHeight : [integer | default: 20] – The height of each timeslot in pixels. Calendar event text is scaled relative to the timeslot height.
+*. defaultEventLength : [integer | default: 2] – An integer representing the number of timeslots a default new event should take up if a user clicks on the calendar.  Clicking and dragging will override this behaviour.
+timeslotsPerHour : [integer | default: 4] – The number of timeslots that will be available within an hour. Calendar events will stick to this grid if their correspondiong start and end times are based on teh grid being used.
+*. scrollToHourMillis : [integer | default: 500] – The time in milliseconds for the scroll animation to the current time on load of calendar events.
+*. allowCalEventOverlap : [boolean | default: false] – Whether the calendar will allow events to overlap. Events will be moved or resized if necessary if they are dragged or resized to a location that overlaps another calendar event.
+*. overlapEventsSeparate : [boolean | default: false] – If true, events that overlap will be rendered separately without any overlap.
+buttons : [boolean | default: true] – Whether to display the navigation buttons of ‘today’, ‘last week’, ‘next week’.
+*. buttonText: [object | default: {today : "today", lastWeek : "&lt;", nextWeek : "&gt;"} ] – Text to use for display in navigation buttons.
+*. newEventText : [string | default: "New Event"] – The temporary text used for a new event in the calendar.
+*. height: [ function(calendar)] – A function that can return a height in pixels for the calendar. If the height of the calendar is less than the space it takes to render it, the calendar will scroll within the timeslot region while the day column headers will remain fixed.
+*. shortMonths : [array | default : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']] – Months of the year in short format.
+*. longMonths : [array | default :  ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] – Months of the year in long format.
+*. shortDays : [array |  default : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']] – Days of the week in short format
+*. longDays : [array | default : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']] days of the week in long format
+*. noEvents: [function()] – Function to call after calendar has loaded and it has no events
+*. draggable: [function(calEvent, eventElement)] – Called on each event to determine whether it should be draggable or not.  Default function returns true on all events.
+*. resizable : [function(calEvent, eventElement)] – Called on each event to determine whether it should be resizable or not.  Default function returns true on all events.
+*. eventRender : [function(calEvent, element)] – Called prior to rendering an event. Allows modification of the eventElement or the ability to return a different element.
+*. eventAfterRender : [function(calEvent, element)] – Called after rendering an event.
+*. eventClick : [function(calEvent, element)] – Called on click of a calendar event.
+*. eventMouseover : [function(calEvent, element)] – Called on mouseover of a calendar event.
+*. eventMouseout : [function(calEvent, element)] – Called on mouseout of a calendar event.
+*. eventDrag : [function(calEvent, element)] Called on drag of a calendar event.
+*. eventDrop : [function(newCalEvent, oldCalEvent, element)] Called on drop of a dragged calendar event.
+*. eventResize :[ function(newCalEvent, oldCalEvent, element)] – Called on resize of a calendar event.
+*. eventNew : [function(calEvent, element)] – Called on creation of a new calendar event.
+*. calendarBeforeLoad : [function(calendar)] – Called after the calendar grid has been rendered but before events are loaded
+*. calendarAfterLoad : [function(calendar)] – Called after events are loaded
+
+h2. Methods
+
+In typical jquery-ui fashion methods are called by passing a method name string as the first argument to the calendar object.
+
+$(”#calendar”).weekCalendar(”today”); // Renders the calendar for todays date.
+$(”#calendar”).weekCalendar(”prevWeek”); // Go to the previous week relative to the currently rendered week.
+$(”#calendar”).weekCalendar(”nextWeek”); // Go to the next week relative to the currently rendered week.
+$(”#calendar”).weekCalendar(”gotoWeek”, date); // Go to the week that the date passed falls within
+$(”#calendar”).weekCalendar(”refresh”); // Refreshes the currently rendered week – if the events are based on a remote data source they will be refetched.
+$(”#calendar”).weekCalendar(”removeEvent”, eventId); // Removes the event from the calendar
+$(”#calendar”).weekCalendar(”updateEvent”, calEvent); // Updates the event with the same id in the calendar or adds it if it  doesn’t exist.
+$(”#calendar”).weekCalendar(”removeUnsavedEvents”); // Removes all events in the calendar who’s calEvent data object doesn’t have an id.
+$(”#calendar”).weekCalendar(”clear”); // Removes all events from the calendar
+$(”#calendar”).weekCalendar(”getTimeslotTimes”, date); // Returns an array of valid timeslot time objects for the day of the date provided {start: date, startFormatted: string, end: date, endFormatted: string} . Formatted dates are formatted based on the ‘timeFormat’ property. This is a useful method for populating options for start and end times of a calendar event.
+$(”#calendar”).weekCalendar(”getData”, key); //returns the value of the named config option for the current calendar instance.
+$(”#calendar”).weekCalendar(”formatDate”, date, [format]); //formats the date as a date based on the format of the current calendar instance or the format if supplied.
+$(”#calendar”).weekCalendar(”formatTime”, date, [format]); //formats the date as a time based on the format of the current calendar instance or the format if supplied.
+Calendar Events Data Structure
+As described in the calendar options section above, calendar data can be supplied in a number of ways. The simplest is to supply an array of calendar events. Calendar events have the following format
+
+id  – [integer] – id of the calendar event
+title – [string] – The title for display in the calendar
+start – [date, ISO8601 String, IETF String or timestamp] – the start date / time of the event.
+end – [date, ISO8601 String, IETF String or timestamp] – the end date / time of the event.
+You may also choose to return calendar data in another format where the top level data object contains an events array and an optional ‘options’ property.  The options property is very useful for allowing you to override specific calendar options on a per data-set basis. This adds extra flexibility but it also requires a re-rendering of the calendar if any options have changed so it can introduce a slightly less snappy experience for the user when they navigate calendar weeks or switch calendar data in other ways. The calendar does not discriminate between different options at this stage so be careful what you return in the ‘options’ property.  Obviously this feature is better suited to some options than others.
+
+data = {
+  options : {
+    timeslotsPerHour : 3
+  }
+events : [ ... ]
+}
+Calendar events can contain any other data you may need. This can be useful when passed to any of the event callbacks for determining things such as whether an event should be draggable, or whether any additional classes should be added to the element. For example you may want to add a ‘readonly’ property to a calendar event in order to then use that property to prevent dragging, dropping, resizing and editing of the event.
+
+CalEvent date formats
+
+Dates for calEvents can be supplied as native date objects or as strings or numbers where appropriate in any of the following formats:
+
+ISO8601 – eg.  2009-05-03T14:00:00.000+10:00
+MILLIS – timestamp
+Retrieving Calendar Events via a function
+
+There is often a case for providing your own implementation for fetching data remotely rather than simply providing a url. Maybe you need to use an existing service that returns the calendar events in a different format or they aren’t at the root node of the response object.  This is simple to do using $.getJson. For example:
+
+data: function(start, end, callback) {
+  $.getJSON("calendarevents.json", {
+     start: start.getTime(),
+     end: end.getTime()
+   },  function(result) {
+     callback(result);
+   });
+}
+Date Formatting
+The date formatting javascript has been adapted from http://jacwright.com/projects/javascript/date_format
+
+Example time: “h:i a” will format as 10:30 am
+
+Example date: “M d, Y” will format as June 16, 2009
+
+Format Character	Description	Example returned values
+Day
+d	Day of the month, 2 digits with leading zeros	01 to 31
+D	A textual representation of a day, three letters	Mon through Sun
+j	Day of the month without leading zeros	1 to 31
+l (lowercase ‘L’)	A full textual representation of the day of the week	Sunday through Saturday
+N	ISO-8601 numeric representation of the day of the week (added in PHP 5.1.0)	1 (for Monday) through 7 (for Sunday)
+S	English ordinal suffix for the day of the month, 2 characters	st, nd, rd or th. Works well with j
+w	Numeric representation of the day of the week	0 (for Sunday) through 6 (for Saturday)
+Week
+Month
+F	A full textual representation of a month, such as January or March	January through December
+m	Numeric representation of a month, with leading zeros	01 through 12
+M	A short textual representation of a month, three letters	Jan through Dec
+n	Numeric representation of a month, without leading zeros	1 through 12
+t	Number of days in the given month	28 through 31
+Year
+Y	A full numeric representation of a year, 4 digits	Examples: 1999 or 2003
+y	A two digit representation of a year	Examples: 99 or 03
+Time
+a	Lowercase Ante meridiem and Post meridiem	am or pm
+A	Uppercase Ante meridiem and Post meridiem	AM or PM
+g	12-hour format of an hour without leading zeros	1 through 12
+G	24-hour format of an hour without leading zeros	0 through 23
+h	12-hour format of an hour with leading zeros	01 through 12
+H	24-hour format of an hour with leading zeros	00 through 23
+i	Minutes with leading zeros	00 to 59
+s	Seconds, with leading zeros	00 through 59
+Timezone
+O	Difference to Greenwich time (GMT) in hours	Example: +0200
+P	Difference to Greenwich time (GMT) with colon between hours and minutes (added in PHP 5.1.3)	Example: +02:00
+Z	Timezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive.	-43200 through 43200
+Full Date/Time
+r	RFC 2822 formatted date	Example: Thu, 21 Dec 2000 16:01:07 +0200
+U	Seconds since the Unix Epoch (January 1 1970 00:00:00 GMT)	See also time()
+Dependencies
+jQuery 1.3.2
+jQuery UI  1.7.x including css. Requires drag, drop, resize.
+I have only tested with the versions listed above however it’s quite likely it could work in previous versions.
+
+Browser Compatibility
+I intend to support the following browsers. IE6 will almost certainly never be supported.  Some may complain, but this me doing my minuscule part to help eradicate it from the world.  Also I don’t have the need or the time to support it. Sorry.
+
+Firefox 3.x (may also work in 2)
+Safari 3.1 +
+IE7+
+Google Chrome
+Look & Feel
+The skin provided has been left intentionally basic but can be extended very simply. The recommended approach would be to add your own stylesheet that overrides colors etc as required rather than editing the style sheet itself.  This makes upgrades a simpler task.
+
+I have entertained the thought of making the calendar jquery-ui theme compatible but I don’t think the design elements in the calendar completely fit with those provided by the theme builder so probably wouldn’t work out.
+
+A Note on jQuery UI Widgets
+In the 1.2.0 release I refactored the code to be based off the jquery-ui widget framework. This, I believe, sets the calendar up to better handle features down the track, cleans the code up and enforces a better overall coding structure. If you’re interested in better understanding the way jquery-ui widgets are structured, I recommend the following article -  understanding jquery ui widgets –   that compliments the official jquery-ui developer guidelines
+
+Support & Feedback (new)
+There is a google group for all your questions and answers.
+
+Known Issues / Limitations & General Status
+Defects and enhancements are being managed on google code’s issue tracker.
+
+Thanks
+Thanks to all of you who have helped by providing bug reports, feature requests and patches. While I haven’t always been able to incorporate your changes in directly they have certainly helped.
