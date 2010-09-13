@@ -48,52 +48,50 @@ h2. Config Options / Event Callbacks
 
 All config is optional although you probably want to at least provide the ‘data’ option.
 
-* date: [date | default: now] – A reference date for the week. The week will be rendered based on whatever this date falls within. Defaults to now
-* data: [array, object, string, function] – Data can be supplied in various forms:
+* *date:* [date | default: now] – A reference date for the week. The week will be rendered based on whatever this date falls within. Defaults to now
+* *data:* [array, object, string, function] – Data can be supplied in various forms:
 ** An array of calEvents
 ** An object containing a property called ‘events’ that is an array of calEvents and an optional property called ‘options’. If supplied, the options will override the default options supplied to the calendar when it was first loaded. This will cause the calendar to be re-rendered.
 ** A url (string) for retrieving data or a function for generating events or retrieving remotely the data structure described above.
-* timeFormat : [string | default: "h:i a" ] – A format to use for times displayed by the calendar.
-* dateFormat : [string | default: "M d, Y" ] – A format to use for dates displayed in the calendar.
-* use24Hour : [boolean | default: false] – Renders timeslots in 24 hour time
-* useShortDayNames : [boolean | default: false] – Whether to use short day names for display in day column headers. Ie. ‘Sun’ instead of ‘Sunday’.
-* firstDayOfWeek : [integer  | default: 0] – Determines what day of the week to start on. 0 = sunday, 1 = tuesday etc.
-* daysToShow : [integer | default: 7] – Determines how many days to show. Note that next/prev weekly navigation is still based on weeks rather than the number of days displaying.
-* timeSeparator : [string  | default: " to "] – The delimiter /separator to use between start and end times display in a calendar event.
-* businessHours : [object | default: {start: 8, end: 18, limitDisplay: false}] – An object that specifies which hours within the day to render as 
-*. business hours. If limitDisplay is true, then only business hours will be rendered. If false, then a whole day will be rendered with business hours timeslot headers styled differently.
-* readonly : [boolean | default: false] – If true, all intereactions that eventuate in a changed calendar state are disabled, including drag, drop, 
-* resize and event creation.
-* startParam : [string | default: "start"] – The name of the ’start date’ request parameter used when supplying a url for fetching events.
-* endParam : [string | default: "end"] – The name of the ‘end date’ request parameter used when supplying a url for fetching events.
-* timeslotHeight : [integer | default: 20] – The height of each timeslot in pixels. Calendar event text is scaled relative to the timeslot height.
-* defaultEventLength : [integer | default: 2] – An integer representing the number of timeslots a default new event should take up if a user clicks on the calendar.  Clicking and dragging will override this behaviour.
-timeslotsPerHour : [integer | default: 4] – The number of timeslots that will be available within an hour. Calendar events will stick to this grid if their correspondiong start and end times are based on teh grid being used.
-* scrollToHourMillis : [integer | default: 500] – The time in milliseconds for the scroll animation to the current time on load of calendar events.
-* allowCalEventOverlap : [boolean | default: false] – Whether the calendar will allow events to overlap. Events will be moved or resized if necessary if they are dragged or resized to a location that overlaps another calendar event.
-* overlapEventsSeparate : [boolean | default: false] – If true, events that overlap will be rendered separately without any overlap.
+* *timeFormat:* [string | default: "h:i a" ] – A format to use for times displayed by the calendar.
+* *dateFormat:* [string | default: "M d, Y" ] – A format to use for dates displayed in the calendar.
+* *use24Hour:* [boolean | default: false] – Renders timeslots in 24 hour time
+* *useShortDayNames:* [boolean | default: false] – Whether to use short day names for display in day column headers. Ie. ‘Sun’ instead of ‘Sunday’.
+* *firstDayOfWeek:* [integer  | default: 0] – Determines what day of the week to start on. 0 = sunday, 1 = tuesday etc.
+* *daysToShow:* [integer | default: 7] – Determines how many days to show. Note that next/prev weekly navigation is still based on weeks rather than the number of days displaying.
+* *timeSeparator:* [string  | default: " to "] – The delimiter /separator to use between start and end times display in a calendar event.
+* *businessHours:* [object | default: {start: 8, end: 18, limitDisplay: false}] – An object that specifies which hours within the day to render as  business hours. If limitDisplay is true, then only business hours will be rendered. If false, then a whole day will be rendered with business hours timeslot headers styled differently.
+* *readonly:* [boolean | default: false] – If true, all intereactions that eventuate in a changed calendar state are disabled, including drag, drop, resize and event creation.
+* *startParam:* [string | default: "start"] – The name of the ’start date’ request parameter used when supplying a url for fetching events.
+* *endParam:* [string | default: "end"] – The name of the ‘end date’ request parameter used when supplying a url for fetching events.
+* *timeslotHeight:* [integer | default: 20] – The height of each timeslot in pixels. Calendar event text is scaled relative to the timeslot height.
+* *defaultEventLength:* [integer | default: 2] – An integer representing the number of timeslots a default new event should take up if a user clicks on the calendar.  Clicking and dragging will override this behaviour.
+* *timeslotsPerHour:* [integer | default: 4] – The number of timeslots that will be available within an hour. Calendar events will stick to this grid if their correspondiong start and end times are based on teh grid being used.
+* *scrollToHourMillis:* [integer | default: 500] – The time in milliseconds for the scroll animation to the current time on load of calendar events.
+* *allowCalEventOverlap:* [boolean | default: false] – Whether the calendar will allow events to overlap. Events will be moved or resized if necessary if they are dragged or resized to a location that overlaps another calendar event.
+* *overlapEventsSeparate:* [boolean | default: false] – If true, events that overlap will be rendered separately without any overlap.
 buttons : [boolean | default: true] – Whether to display the navigation buttons of ‘today’, ‘last week’, ‘next week’.
-* buttonText: [object | default: {today : "today", lastWeek : "&lt;", nextWeek : "&gt;"} ] – Text to use for display in navigation buttons.
-* newEventText : [string | default: "New Event"] – The temporary text used for a new event in the calendar.
-* height: [ function(calendar)] – A function that can return a height in pixels for the calendar. If the height of the calendar is less than the space it takes to render it, the calendar will scroll within the timeslot region while the day column headers will remain fixed.
-* shortMonths : [array | default : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']] – Months of the year in short format.
-* longMonths : [array | default :  ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] – Months of the year in long format.
-* shortDays : [array |  default : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']] – Days of the week in short format
-* longDays : [array | default : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']] days of the week in long format
-* noEvents: [function()] – Function to call after calendar has loaded and it has no events
-* draggable: [function(calEvent, eventElement)] – Called on each event to determine whether it should be draggable or not.  Default function returns true on all events.
-* resizable : [function(calEvent, eventElement)] – Called on each event to determine whether it should be resizable or not.  Default function returns true on all events.
-* eventRender : [function(calEvent, element)] – Called prior to rendering an event. Allows modification of the eventElement or the ability to return a different element.
-* eventAfterRender : [function(calEvent, element)] – Called after rendering an event.
-* eventClick : [function(calEvent, element)] – Called on click of a calendar event.
-* eventMouseover : [function(calEvent, element)] – Called on mouseover of a calendar event.
-* eventMouseout : [function(calEvent, element)] – Called on mouseout of a calendar event.
-* eventDrag : [function(calEvent, element)] Called on drag of a calendar event.
-* eventDrop : [function(newCalEvent, oldCalEvent, element)] Called on drop of a dragged calendar event.
-* eventResize :[ function(newCalEvent, oldCalEvent, element)] – Called on resize of a calendar event.
-* eventNew : [function(calEvent, element)] – Called on creation of a new calendar event.
-* calendarBeforeLoad : [function(calendar)] – Called after the calendar grid has been rendered but before events are loaded
-* calendarAfterLoad : [function(calendar)] – Called after events are loaded
+* *buttonText:* [object | default: {today : "today", lastWeek : "&lt;", nextWeek : "&gt;"} ] – Text to use for display in navigation buttons.
+* *newEventText:* [string | default: "New Event"] – The temporary text used for a new event in the calendar.
+* *height:* [ function(calendar)] – A function that can return a height in pixels for the calendar. If the height of the calendar is less than the space it takes to render it, the calendar will scroll within the timeslot region while the day column headers will remain fixed.
+* *shortMonths:* [array | default : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']] – Months of the year in short format.
+* *longMonths:* [array | default :  ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] – Months of the year in long format.
+* *shortDays:* [array |  default : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']] – Days of the week in short format
+* *longDays:* [array | default : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']] days of the week in long format
+* *noEvents:* [function()] – Function to call after calendar has loaded and it has no events
+* *draggable:* [function(calEvent, eventElement)] – Called on each event to determine whether it should be draggable or not.  Default function returns true on all events.
+* *resizable:* [function(calEvent, eventElement)] – Called on each event to determine whether it should be resizable or not.  Default function returns true on all events.
+* *eventRender:* [function(calEvent, element)] – Called prior to rendering an event. Allows modification of the eventElement or the ability to return a different element.
+* *eventAfterRender:* [function(calEvent, element)] – Called after rendering an event.
+* *eventClick:* [function(calEvent, element)] – Called on click of a calendar event.
+* *eventMouseover:* [function(calEvent, element)] – Called on mouseover of a calendar event.
+* *eventMouseout:* [function(calEvent, element)] – Called on mouseout of a calendar event.
+* *eventDrag:* [function(calEvent, element)] Called on drag of a calendar event.
+* *eventDrop:* [function(newCalEvent, oldCalEvent, element)] Called on drop of a dragged calendar event.
+* *eventResize:* [ function(newCalEvent, oldCalEvent, element)] – Called on resize of a calendar event.
+* *eventNew:* [function(calEvent, element)] – Called on creation of a new calendar event.
+* *calendarBeforeLoad:* [function(calendar)] – Called after the calendar grid has been rendered but before events are loaded
+* *calendarAfterLoad:* [function(calendar)] – Called after events are loaded
 
 h2. Methods
 
