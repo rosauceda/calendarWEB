@@ -231,7 +231,7 @@ In the 1.2.0 release I refactored the code to be based off the jquery-ui widget 
 
 h2. Support & Feedback (new)
 
-There is a google group for all your questions and answers.
+There is a "google group":http://groups.google.com/group/jquery-week-calendar for all your questions and answers.
 
 h2. Known Issues / Limitations & General Status
 
