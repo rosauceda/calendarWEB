@@ -1,17 +1,15 @@
-Online demos will be available soon - once I figure out how to serve them directly out of github like I did using google code svn. Any pointers in the mean time are most welcome...
 
+h2. "Demo 1 (Basic)":http://jquery-week-calendar.s3.amazonaws.com/weekcalendar.html
 
------
+Shows basic calendar functionality. Calendar Events are supplied as a local javascript array. All triggered events are displayed as messages, calendar events in the past are shaded gray using the eventRender callback.
 
+h2. "Demo 2 (Multi data-source and dynamic config options)":http://jquery-week-calendar.s3.amazonaws.com/weekcalendar_demo_2.html
 
-The following live demonstration  has a basic calendar with a few events in it. It demonstrates most of the major functionality by triggering events that are displayed as messages in the top right hand corner of the screen.  More demos will  come soon…
+Allows you to select from two different data sources. These are both local javascript objects but could just as easily have come from a remote server. The data returned includes an ‘options’ property which overrides the default calendar options for ‘timeslotHeight’ and ‘timeslotsPerHour’.
 
-#  Demo 1 (Basic)
-#  Demo 1 shows basic calendar functionality. Calendar Events are supplied as a local javascript array. All triggered events are displayed as messages, calendar events in the past are shaded gray using the eventRender callback.
-# Demo 2 (Multi data-source and dynamic config options)
-#  Demo 2 allows you to select from two different data sources. These are both local javascript objects but could just as easily have come from a remote server. The data returned includes an ‘options’ property which overrides the default calendar options for ‘timeslotHeight’ and ‘timeslotsPerHour’.
-#  Demo 3 (Create / update / delete using jquery UI)
+h2. "Demo 3 (Create / update / delete using jquery UI)":http://jquery-week-calendar.s3.amazonaws.com/full_demo/weekcalendar_full_demo.html
+
 This demo shows the use of jquery ui modal dialog for creating, updating and deleting events. It also demonstrates the use of
-## Staggered overlapping events
-## Querying the calendar for valid timeslots for a date to populate calendar event form select fields
-## Limited display of timeslots based on business hours
+# Staggered overlapping events
+# Querying the calendar for valid timeslots for a date to populate calendar event form select fields
+# Limited display of timeslots based on business hours
