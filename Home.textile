@@ -19,7 +19,7 @@ The design of the  week-calendar plugin is not meant to be a total solution for 
 
 h2. Current Version
 
-The current version is 1.2.2
+"The current version is 1.2.2":http://cloud.github.com/downloads/robmonie/jquery-week-calendar/jquery-weekcalendar-1.2.2.zip
 
 h2. Getting Started
 
