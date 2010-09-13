@@ -142,24 +142,26 @@ You may also choose to return calendar data in another format where the top leve
 bc. data = {
   options : {
     timeslotsPerHour : 3
-  }
-events : [ ... ]
+  },
+  events : [ ... ]
 }
 
 
 Calendar events can contain any other data you may need. This can be useful when passed to any of the event callbacks for determining things such as whether an event should be draggable, or whether any additional classes should be added to the element. For example you may want to add a ‘readonly’ property to a calendar event in order to then use that property to prevent dragging, dropping, resizing and editing of the event.
 
-CalEvent date formats
+h2. CalEvent date formats
 
 Dates for calEvents can be supplied as native date objects or as strings or numbers where appropriate in any of the following formats:
 
-ISO8601 – eg.  2009-05-03T14:00:00.000+10:00
-MILLIS – timestamp
-Retrieving Calendar Events via a function
+* ISO8601 – eg.  2009-05-03T14:00:00.000+10:00
+* MILLIS – timestamp
+
+
+h2. Retrieving Calendar Events via a function
 
 There is often a case for providing your own implementation for fetching data remotely rather than simply providing a url. Maybe you need to use an existing service that returns the calendar events in a different format or they aren’t at the root node of the response object.  This is simple to do using $.getJson. For example:
 
-data: function(start, end, callback) {
+bc. data: function(start, end, callback) {
   $.getJSON("calendarevents.json", {
      start: start.getTime(),
      end: end.getTime()
@@ -167,7 +169,10 @@ data: function(start, end, callback) {
      callback(result);
    });
 }
-Date Formatting
+
+
+h2. Date Formatting
+
 The date formatting javascript has been adapted from http://jacwright.com/projects/javascript/date_format
 
 Example time: “h:i a” will format as 10:30 am
@@ -209,31 +214,40 @@ Z	Timezone offset in seconds. The offset for timezones west of UTC is always neg
 Full Date/Time
 r	RFC 2822 formatted date	Example: Thu, 21 Dec 2000 16:01:07 +0200
 U	Seconds since the Unix Epoch (January 1 1970 00:00:00 GMT)	See also time()
-Dependencies
-jQuery 1.3.2
-jQuery UI  1.7.x including css. Requires drag, drop, resize.
+
+
+h2. Dependencies
+* jQuery 1.3.2
+* jQuery UI  1.7.x including css. Requires drag, drop, resize.
+
 I have only tested with the versions listed above however it’s quite likely it could work in previous versions.
 
-Browser Compatibility
+h2. Browser Compatibility
 I intend to support the following browsers. IE6 will almost certainly never be supported.  Some may complain, but this me doing my minuscule part to help eradicate it from the world.  Also I don’t have the need or the time to support it. Sorry.
 
-Firefox 3.x (may also work in 2)
-Safari 3.1 +
-IE7+
-Google Chrome
-Look & Feel
+* Firefox 3.x (may also work in 2)
+* Safari 3.1 +
+* IE7+
+* Google Chrome
+
+h2. Look & Feel
+
 The skin provided has been left intentionally basic but can be extended very simply. The recommended approach would be to add your own stylesheet that overrides colors etc as required rather than editing the style sheet itself.  This makes upgrades a simpler task.
 
 I have entertained the thought of making the calendar jquery-ui theme compatible but I don’t think the design elements in the calendar completely fit with those provided by the theme builder so probably wouldn’t work out.
 
-A Note on jQuery UI Widgets
+h2. A Note on jQuery UI Widgets
+
 In the 1.2.0 release I refactored the code to be based off the jquery-ui widget framework. This, I believe, sets the calendar up to better handle features down the track, cleans the code up and enforces a better overall coding structure. If you’re interested in better understanding the way jquery-ui widgets are structured, I recommend the following article -  understanding jquery ui widgets –   that compliments the official jquery-ui developer guidelines
 
-Support & Feedback (new)
+h2. Support & Feedback (new)
+
 There is a google group for all your questions and answers.
 
-Known Issues / Limitations & General Status
+h2. Known Issues / Limitations & General Status
+
 Defects and enhancements are being managed on google code’s issue tracker.
 
-Thanks
+h2. Thanks
+
 Thanks to all of you who have helped by providing bug reports, feature requests and patches. While I haven’t always been able to incorporate your changes in directly they have certainly helped.
