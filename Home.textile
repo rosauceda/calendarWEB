@@ -212,6 +212,7 @@ h2. Dependencies
 I have only tested with the versions listed above however it’s quite likely it could work in previous versions.
 
 h2. Browser Compatibility
+
 I intend to support the following browsers. IE6 will almost certainly never be supported.  Some may complain, but this me doing my minuscule part to help eradicate it from the world.  Also I don’t have the need or the time to support it. Sorry.
 
 * Firefox 3.x (may also work in 2)
