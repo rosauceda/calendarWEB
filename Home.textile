@@ -1,3 +1,12 @@
+h1. IMPORTANT - Project status.
+
+Due to other commitments, I will no longer be maintaining this project for the foreseeable future. I encourage anyone to fork the project and discuss your fork in the google group if you like. If someone proves to be taking the project to the next level, we can discuss making it the new official version of the plugin.
+
+Thanks to everyone for your help and emails. It's been fun!!
+
+-Rob
+
+
 h1. jQuery Week Calendar
 
 The jquery-week-calendar plugin provides a simple and flexible way of including a weekly calendar in your application.  It is built on top of jquery and jquery ui and is inspired by other online weekly calendars such as google calendar.  If you require a monthly calendar view, I highly recommend checking out the FullCalendar plugin by Adam Shaw.
