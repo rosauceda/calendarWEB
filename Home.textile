@@ -68,7 +68,7 @@ All config is optional although you probably want to at least provide the ‘dat
 * *dateFormat:* [string | default: "M d, Y" ] – A format to use for dates displayed in the calendar.
 * *use24Hour:* [boolean | default: false] – Renders timeslots in 24 hour time
 * *useShortDayNames:* [boolean | default: false] – Whether to use short day names for display in day column headers. Ie. ‘Sun’ instead of ‘Sunday’.
-* *firstDayOfWeek:* [integer  | default: 0] – Determines what day of the week to start on. 0 = sunday, 1 = tuesday etc.
+* *firstDayOfWeek:* [integer  | default: 0] – Determines what day of the week to start on. 0 = sunday, 1 = monday etc.
 * *daysToShow:* [integer | default: 7] – Determines how many days to show. Note that next/prev weekly navigation is still based on weeks rather than the number of days displaying.
 * *timeSeparator:* [string  | default: " to "] – The delimiter /separator to use between start and end times display in a calendar event.
 * *businessHours:* [object | default: {start: 8, end: 18, limitDisplay: false}] – An object that specifies which hours within the day to render as  business hours. If limitDisplay is true, then only business hours will be rendered. If false, then a whole day will be rendered with business hours timeslot headers styled differently.
