@@ -2,7 +2,7 @@ h1. IMPORTANT - Project status.
 
 Due to other commitments, I will no longer be maintaining this project for the foreseeable future.
 
-The current 'official' fork that I recommend people to follow is run by Julien Muetton and can be found at http://github.com/themouette/jquery-week-calendar
+The current 'official' fork that I recommend people to follow is run by Julien Muetton and can be found at "http://github.com/themouette/jquery-week-calendar":http://github.com/themouette/jquery-week-calendar
 
 Thanks to everyone for your help and emails. It's been fun!!
 
